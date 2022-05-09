@@ -30,9 +30,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        Session::forget('ques1');
         Session::forget('ques2');
         Session::forget('ques3');
+        Session::forget('res');
         return view('home', []);
     }
     
@@ -55,7 +55,21 @@ class HomeController extends Controller
     public function FinalStep()
     {
         if(Session::has('ques2')) {
-            return view('finalstep', []);
+            $postData = [];
+            if(Session::has('res')){
+                $postData = Session::get('res');
+            }
+            return view('finalstep', [
+                'firstname' => (isset($postData['first_name']))?$postData['first_name']:'',
+                'lastname'  => (isset($postData['last_name']))?$postData['last_name']:'',
+                'phone'     => (isset($postData['phone_home']))?$postData['phone_home']:'',
+                'address'   => (isset($postData['address']))?$postData['address']:'',
+                'city'      => (isset($postData['city']))?$postData['city']:'',
+                'state'     => (isset($postData['state']))?$postData['state']:'',
+                'zip_code'  => (isset($postData['zip_code']))?$postData['zip_code']:'',
+                'email'     => (isset($postData['email_address']))?$postData['email_address']:'',
+                'tellus'    => (isset($postData['comments']))?$postData['comments']:'',
+            ]);
         }
         return redirect->route('ques3');
     }
@@ -72,7 +86,7 @@ class HomeController extends Controller
         } else if($request->ques == 'ques2') {
             Session::put('ques2', $request->ques2);
         } else if($request->ques == 'ques3') {
-            Session::put('ques3', $request->ques);
+            Session::put('ques3', $request->ques3);
         }
         
         return response()->json(array('sms'=>1));

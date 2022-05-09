@@ -17,19 +17,19 @@
           <h4 class="minHeight">Who should receive compensation?:</h4>
           <form id="finalstep" class="form-validate">
             <div class="col-12 mb-10 form-group">
-              <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" required>
+              <input type="text" name="firstname" id="firstname" class="form-control" placeholder="First Name" required value="{{ $firstname }}">
             </div>
             <div class="col-12 mb-10 form-group">
-              <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name" required>
+              <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Last Name" required value="{{ $lastname }}">
             </div>
             <div class="col-12 mb-10 form-group">
-              <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required>
+              <input type="text" name="phone" id="phone" class="form-control" placeholder="Phone" required value="{{ $phone }}">
             </div>
             <div class="col-12 mb-10 form-group">
-              <input type="text" name="address" id="address" class="form-control" placeholder="Address" required>
+              <input type="text" name="address" id="address" class="form-control" placeholder="Address" required value="{{ $address }}">
             </div>
             <div class="col-12 mb-10 form-group">
-              <input type="text" name="city" id="city" class="form-control" placeholder="City" required>
+              <input type="text" name="city" id="city" class="form-control" placeholder="City" required value="{{ $city }}">
             </div>
             <div class="col-12 mb-10 form-group">
                 <select class="form-control" required id="state" name="state">
@@ -88,13 +88,13 @@
                 </select>	
             </div>
             <div class="col-12 mb-10 form-group">
-              <input type="text" name="zip_code" id="zip_code" class="form-control" placeholder="Zip Code" required>
+              <input type="text" name="zip_code" id="zip_code" class="form-control" placeholder="Zip Code" required value="{{ $zip_code }}">
             </div>
             <div class="col-12 mb-10 form-group">
-              <input type="text" name="email" id="email" class="form-control" placeholder="Email" required>
+              <input type="text" name="email" id="email" class="form-control" placeholder="Email" required value="{{ $email }}">
             </div>
             <div class="col-12 mb-10 form-group">
-              <textarea rows="3" name="tellus" id="tellus" class="form-control" placeholder="Tell us about your case" required></textarea>
+              <textarea rows="3" name="tellus" id="tellus" class="form-control" placeholder="Tell us about your case" required>{{ $tellus }}</textarea>
             </div>
             <div class="col-12">
               <p>By submitting this information, you agree to our Terms & Conditions and that Legal Injury Advocates and its partner law firms may contact you about their services at your above phone number(s)  even if it is on a National or State Do Not Call List. Calls/texts may employ automated dialing technology and pre-recorded/artificial voice messages. I understand my consent is not a condition of any purchase.</p>
@@ -122,6 +122,8 @@
 <script>
 $(function(){
     $("input#phone").inputmask('(999)-999-9999');
+
+    $('select#state').val('{{ $state }}');
 
     $('form#finalstep').formValidation({
         framework: 'bootstrap',
